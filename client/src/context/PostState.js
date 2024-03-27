@@ -3,7 +3,7 @@ import postContext from './postContext'
 
 function PostState(props) {
 
-    const host = 'https://wordpost-server-six.vercel.app'
+    const host = 'http://localhost:5000'
     const [posts, setPosts] = useState([]);
     const [details, setDetails] = useState([]);
 
