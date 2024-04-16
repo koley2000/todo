@@ -1,14 +1,15 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {getPost} from '../features/getSlice'
 import Post from './Post';
-import postContext from '../context/postContext';
 
 
 export default function TablePost() {
-    const context = useContext(postContext);
-    const {posts, getPost } = context;
+    const dispatch = useDispatch();
     useEffect(()=>{
-        getPost()
+        dispatch(getPost()) 
     })
+    const posts = useSelector(state => state.req.posts)
     return (
         <div className='overflow-auto mx-auto mt-20 flex sm:justify-center items-center sm:ml-1'>
             <table className="shadow-md divide-y divide-gray-200 table-auto text-left mx-3"> 
@@ -21,7 +22,7 @@ export default function TablePost() {
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                    {posts?.map((post) => {
+                    {Array.from(posts)?.map((post) => {
                        return <Post key={post.id} post={post} />
                     })}
                 </tbody>

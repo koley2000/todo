@@ -1,22 +1,25 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import personIcon from '../images/person-icon.jpg'
 import { useNavigate } from "react-router-dom";
-import postContext from "../context/postContext";
+import { useDispatch, useSelector } from 'react-redux';
+import {getDetails} from '../features/getSlice'
 
 
 export default function Profile() {
-  const context = useContext(postContext);
-  const { details, getDetails } = context;
+  // const context = useContext(postContext);
+  // const { details, getDetails } = context;
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getDetails();
+    dispatch(getDetails());
   })
 
+  const details = useSelector(state => state.req.user)
 
   let navigate = useNavigate();
   const handleLogout = () => {
     sessionStorage.removeItem('token')
-    navigate("/signup");
+    navigate("/login");
   }
 
   return (

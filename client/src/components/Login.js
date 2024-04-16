@@ -18,7 +18,7 @@ function Login() {
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
 
-    const loginSubmit = async (e) => {
+    const loginSubmit = async (e) => {   //Login Authentication
         e.preventDefault();
         const response = await fetch(`http://localhost:5000/api/auth/login`, {
             method: 'POST',

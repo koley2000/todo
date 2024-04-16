@@ -31,7 +31,7 @@ function Signup(props) {
   };
 
 
-  const signupSubmit = async (e) => {
+  const signupSubmit = async (e) => { //Singup Authentication
     e.preventDefault();
     const { name, username, email, password } = input;
     const response = await fetch(`http://localhost:5000/api/auth/createuser`, {

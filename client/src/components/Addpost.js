@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import {
     Button,
     Dialog,
@@ -7,24 +7,27 @@ import {
     DialogFooter,
 } from "@material-tailwind/react";
 import { FaPlus } from "react-icons/fa";
-import postContext from "../context/postContext";
+// import postContext from "../context/postContext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { useDispatch} from 'react-redux';
+import {addPost} from '../features/getSlice'
 
 function Addpost() {
     const [open, setOpen] = useState(false);
-
+     
     const handleOpen = () => setOpen(!open);
-    const context = useContext(postContext);
-    const { addPost } = context;
+    const dispatch = useDispatch();
+
     const [post, setPost] = useState({ title: "", description: "", tag: "" })
+    
 
     const postClick = (e) => {
         e.preventDefault();
-        addPost(post.title, post.description, post.tag)
+        dispatch(addPost({title:post.title, description:post.description, tag:post.tag}))
         setPost({ title: "", description: "", tag: "" })
         toast.success("Added Successfully")
+        console.log("successfully added")
         setOpen(!open);
     }
     const onChange = (e) => {

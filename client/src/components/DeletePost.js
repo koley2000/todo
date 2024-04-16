@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { MdDeleteOutline } from "react-icons/md";
 import {
     Button,
@@ -7,9 +7,10 @@ import {
     DialogBody,
     DialogFooter,
 } from "@material-tailwind/react";
-import postContext from '../context/postContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch} from 'react-redux';
+import {deletePost} from '../features/getSlice'
 
 
 function DeletePost(props) {
@@ -17,11 +18,10 @@ function DeletePost(props) {
     const { id } = props;
 
     const handleOpen = () => setOpen(!open);
-    const context = useContext(postContext);
-    const { deletePost } = context;
+    const dispatch = useDispatch();
 
     const handleSubmit = () => {
-        deletePost(id);
+        dispatch(deletePost(id));
         toast.success("Deletion Successful")
         setOpen(!open)
     }

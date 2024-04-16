@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import {
     Button,
     Dialog,
@@ -7,9 +7,10 @@ import {
     DialogFooter,
 } from "@material-tailwind/react";
 import { MdOutlineEdit } from "react-icons/md";
-import postContext from "../context/postContext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch} from 'react-redux';
+import {editPost} from '../features/getSlice'
 
 
 function EditPost(props) {
@@ -17,8 +18,7 @@ function EditPost(props) {
     const { post } = props;
 
     const handleOpen = () => setOpen(!open);
-    const context = useContext(postContext);
-    const { editPost } = context;
+    const dispatch = useDispatch();
     const [postData, setPostData] = useState({ title: "", description: "", tag: "" })
 
     const onChange = (e) => {
@@ -27,14 +27,14 @@ function EditPost(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        editPost(post._id, postData.title, postData.description, postData.tag)
+        dispatch(editPost({id:post._id, title:postData.title, description:postData.description, tag:postData.tag}))
         toast.success("update successful");
         setOpen(!open);
     }
 
     return (
         <>
-            <ToastContainer />
+            <ToastContainer autoClose={1000}/>
             <button type="button" onClick={handleOpen} className="rmr-6 inline-flex items-center rounded border-2 border-gray-800 text-black bg-yellow-500 hover:bg-yellow-300 px-3 py-2 mx-3 text-base focus:outline-none mt-2.5" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                 <MdOutlineEdit />
             </button>

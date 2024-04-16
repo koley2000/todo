@@ -10,7 +10,7 @@ function Home() {
         console.log("Success")
     }
     else{
-        navigate("/signup");
+        navigate("/login");
     }
     // eslint-disable-next-line
 },[])

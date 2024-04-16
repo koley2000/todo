@@ -7,13 +7,12 @@ import {
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Home from './components/Home';
-import PostState from './context/PostState';
+
 
 function App() {
 
   return (
     <>
-      <PostState>
         <Router>
           <Routes>
             <Route path='/signup' element={<Signup />} />
@@ -21,7 +20,6 @@ function App() {
             <Route path='/' element={<Home />} />
           </Routes>
         </Router>
-      </PostState>
     </>
   );
 }
