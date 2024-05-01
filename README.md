@@ -28,3 +28,4 @@ npm start
 | [Redux Toolkit](https://redux-toolkit.js.org/)                                         | A state management library that allows us to manage the state in react app|                   |
 | [Tailwind CSS](https://tailwindcss.com/)                                               | A free and open-source tool collection for creating responsive websites   | 
 | [Express JS](https://expressjs.com/)                                                   | Framework that works on top of Node JS functionality to simplify its APIs |
+| [MongoDB](https://www.mongodb.com/)                                                    | Open source, non-relational document-oriented database             |
